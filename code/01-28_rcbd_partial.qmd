@@ -106,7 +106,10 @@ Below we change the default to sum-to-zero ("contr.sum") before fitting the mode
 options(contrasts = c("contr.sum", "contr.poly"))
 
 # Model fitting
-rcbd_mod 
+rcbd_mod <- lm(yield_kgha ~ rep + nrate_kgha*krate_kgha,
+               data = rcbd_dfw
+               )
+
 
 # Summary
 summary(rcbd_mod)
@@ -160,6 +163,9 @@ Now, let's recap the linear model assumptions:
 - Residual normality (discuss this!)  
 - Outlier detection (< -3 or > 3)  
 
+
+variance error ~ eiidN(0, sigma2)
+
 ## Residual independence  
 - For this, we use the **fitted vs. residual plot**.  
 - What we want to see: no clear pattern in residuals, random cloud of points.  
@@ -173,7 +179,7 @@ ggplot(rcbd_resid, aes(x=.fitted, y=.studresid))+
              fill = "purple", 
              size = 3,
              alpha = .7)+
-  #geom_smooth()+
+  geom_smooth()+
   geom_hline(yintercept = c(-3,3), color = "red")+
   theme_bw()
 ```
