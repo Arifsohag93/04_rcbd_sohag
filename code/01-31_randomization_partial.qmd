@@ -41,7 +41,7 @@ Since it is a CRD, randomization is unrestricted.
 
 ```{r crd_rand}
 # Setting seed to get same randomization result every time
-set.seed(930)
+set.seed(12345)
 
 crd_rand <- crossing(trtname = trts$trtname,
                      rep = 1:4
@@ -82,7 +82,7 @@ ggplot(data = crd_layout,
        aes(x = row, y = -col)
        ) +
   geom_tile(aes(fill = trtname), 
-            color = "black",
+            color = "white",
             show.legend = F
             ) +
   geom_text(aes(label = lab)) +
@@ -93,12 +93,18 @@ ggplot(data = crd_layout,
 
 Notice how due to unrestricted randomization, we had the replication of some treatments falling in neighboring plots, e.g. plots 12 and 13 have the same treatment.  
 
+```{r}
+ggsave("../output/crd_layoutmap_Sohag.png",
+       width = 6,
+       height = 4,
+       bg = "white")
+```
 
 # RCBD  
 ## Randomization  
 ```{r rcbd_rand}
 # Setting seed to get same randomization result every time
-set.seed(930)
+set.seed(12345)
 
 rcbd_rand <- crossing(trtname = trts$trtname,
                       rep = 1:4
@@ -141,10 +147,10 @@ Now, let's plot it.
 ggplot(data = rcbd_layout, aes(x = row, 
                                y = -col))+
   geom_tile(aes(fill = trtname),
-            color = "black",
+            color = "white",
             show.legend = F
   )+
-  geom_text(aes(label = plot), fontface = "bold", vjust = -.8)+
+  geom_text(aes(label = plot), fontface = "bold", vjust = -.5)+
   geom_text(aes(label = trtname), vjust = 1)+
   labs(title = "RCBD randomization of a 3 x 3 factorial (9 treatments)") +
   theme_void()
@@ -172,7 +178,7 @@ dplyr:: select(plot, rep, trtname, trtnum,
 `ggsave()` will save the last plot created in the session, even if from an above chunk. Since the last plot we created was the RCBD layout, we can just go ahead and call ggsave here.  
 
 ```{r}
-ggsave("../output/rcbd_layoutmap.png",
+ggsave("../output/rcbd_layoutmap_Sohag.png",
        width = 6,
        height = 4,
        bg = "white")
