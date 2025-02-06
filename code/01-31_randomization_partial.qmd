@@ -87,6 +87,7 @@ ggplot(data = crd_layout,
             ) +
   geom_text(aes(label = lab)) +
   labs(title = "CRD randomization of a 3*3 factorial (9 treatment)") +
+  scale_fill_ordinal()+
   theme_void()
 
 ```
@@ -153,6 +154,7 @@ ggplot(data = rcbd_layout, aes(x = row,
   geom_text(aes(label = plot), fontface = "bold", vjust = -.5)+
   geom_text(aes(label = trtname), vjust = 1)+
   labs(title = "RCBD randomization of a 3 x 3 factorial (9 treatments)") +
+  scale_fill_brewer() +
   theme_void()
 
 ```
