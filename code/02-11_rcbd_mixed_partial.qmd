@@ -293,5 +293,5 @@ ggsave("../output/rcbd_mix_means.png",
 
 # Assignment - comparing blocks fixed vs. random  
 
-
+submitted the assignment
 
